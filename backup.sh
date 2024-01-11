@@ -6,7 +6,7 @@ OUTDIR=$PWD
 
 # Find disk with Linux partition (works for Raspbian)
 # Modified for PINN/NOOBS
-export DSK=`diskutil list | grep "Linux" | sed 's/.*\(disk[0-9]\).*/\1/' | uniq`
+DSK="${DSK:-`diskutil list | grep "Linux" | sed 's/.*\(disk[0-9]\).*/\1/' | uniq`}"
 if [ $DSK ]; then
     echo $DSK
     echo $OUTDIR
@@ -16,7 +16,7 @@ else
 fi
 
 if [ $# -eq 0 ] ; then
-    BACKUPNAME='Pi'
+    BACKUPNAME="Pi"
 else
     BACKUPNAME=$1
 fi
